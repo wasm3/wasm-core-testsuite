@@ -1,0 +1,6 @@
+{"source_filename": "./_wast/proposals/reference-types/ref_null.wast",
+ "commands": [
+  {"type": "module", "line": 1, "filename": "ref_null.0.wasm"}, 
+  {"type": "assert_return", "line": 11, "action": {"type": "invoke", "field": "anyref", "args": []}, "expected": [{"type": "nullref", "value": "0"}]}, 
+  {"type": "assert_return", "line": 12, "action": {"type": "invoke", "field": "funcref", "args": []}, "expected": [{"type": "nullref", "value": "0"}]}, 
+  {"type": "assert_return", "line": 13, "action": {"type": "invoke", "field": "nullref", "args": []}, "expected": [{"type": "nullref", "value": "0"}]}]}
