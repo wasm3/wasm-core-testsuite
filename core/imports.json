@@ -1,4 +1,4 @@
-{"source_filename": "core/spec/imports.wast",
+{"source_filename": "./_wast/core-1.1/imports.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "imports.0.wasm"}, 
   {"type": "register", "line": 19, "as": "test"}, 
@@ -146,4 +146,6 @@
   {"type": "assert_malformed", "line": 556, "filename": "imports.113.wat", "text": "import after memory", "module_type": "text"}, 
   {"type": "assert_malformed", "line": 560, "filename": "imports.114.wat", "text": "import after memory", "module_type": "text"}, 
   {"type": "assert_malformed", "line": 564, "filename": "imports.115.wat", "text": "import after memory", "module_type": "text"}, 
-  {"type": "assert_unlinkable", "line": 572, "filename": "imports.116.wasm", "text": "unknown import", "module_type": "binary"}]}
+  {"type": "module", "line": 571, "filename": "imports.116.wasm"}, 
+  {"type": "register", "line": 572, "as": "not wasm"}, 
+  {"type": "assert_unlinkable", "line": 574, "filename": "imports.117.wasm", "text": "unknown import", "module_type": "binary"}]}

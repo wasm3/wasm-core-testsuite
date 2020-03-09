@@ -1,4 +1,4 @@
-{"source_filename": "core/spec/type.wast",
+{"source_filename": "./_wast/core-1.1/type.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "type.0.wasm"}, 
   {"type": "assert_malformed", "line": 44, "filename": "type.1.wat", "text": "result before parameter", "module_type": "text"}, 

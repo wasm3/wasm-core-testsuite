@@ -1,3 +1,3 @@
-{"source_filename": "core/spec/inline-module.wast",
+{"source_filename": "./_wast/core-1.1/inline-module.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "inline-module.0.wasm"}]}

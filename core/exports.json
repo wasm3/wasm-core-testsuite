@@ -1,4 +1,4 @@
-{"source_filename": "core/spec/exports.wast",
+{"source_filename": "./_wast/core-1.1/exports.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "exports.0.wasm"}, 
   {"type": "module", "line": 4, "filename": "exports.1.wasm"}, 

@@ -1,1 +1,1 @@
-(memory 0) (import "" "" (table 1 3 anyfunc))
+(memory 0) (import "" "" (table 1 3 funcref))

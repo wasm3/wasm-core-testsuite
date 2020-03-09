@@ -1,4 +1,4 @@
-{"source_filename": "core/spec/comments.wast",
+{"source_filename": "./_wast/core-1.1/comments.wast",
  "commands": [
   {"type": "module", "line": 10, "filename": "comments.0.wasm"}, 
   {"type": "module", "line": 52, "filename": "comments.1.wasm"}, 

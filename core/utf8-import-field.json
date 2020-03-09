@@ -1,4 +1,4 @@
-{"source_filename": "core/spec/utf8-import-field.wast",
+{"source_filename": "./_wast/core-1.1/utf8-import-field.wast",
  "commands": [
   {"type": "assert_malformed", "line": 7, "filename": "utf8-import-field.0.wasm", "text": "invalid UTF-8 encoding", "module_type": "binary"}, 
   {"type": "assert_malformed", "line": 22, "filename": "utf8-import-field.1.wasm", "text": "invalid UTF-8 encoding", "module_type": "binary"}, 

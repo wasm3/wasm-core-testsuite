@@ -1,4 +1,4 @@
-{"source_filename": "core/spec/f32_cmp.wast",
+{"source_filename": "./_wast/core-1.1/f32_cmp.wast",
  "commands": [
   {"type": "module", "line": 4, "filename": "f32_cmp.0.wasm"}, 
   {"type": "assert_return", "line": 13, "action": {"type": "invoke", "field": "eq", "args": [{"type": "f32", "value": "2147483648"}, {"type": "f32", "value": "2147483648"}]}, "expected": [{"type": "i32", "value": "1"}]}, 
@@ -2400,4 +2400,10 @@
   {"type": "assert_return", "line": 2409, "action": {"type": "invoke", "field": "ge", "args": [{"type": "f32", "value": "2143289344"}, {"type": "f32", "value": "2143289344"}]}, "expected": [{"type": "i32", "value": "0"}]}, 
   {"type": "assert_return", "line": 2410, "action": {"type": "invoke", "field": "ge", "args": [{"type": "f32", "value": "2141192192"}, {"type": "f32", "value": "2143289344"}]}, "expected": [{"type": "i32", "value": "0"}]}, 
   {"type": "assert_return", "line": 2411, "action": {"type": "invoke", "field": "ge", "args": [{"type": "f32", "value": "2143289344"}, {"type": "f32", "value": "2141192192"}]}, "expected": [{"type": "i32", "value": "0"}]}, 
-  {"type": "assert_return", "line": 2412, "action": {"type": "invoke", "field": "ge", "args": [{"type": "f32", "value": "2141192192"}, {"type": "f32", "value": "2141192192"}]}, "expected": [{"type": "i32", "value": "0"}]}]}
+  {"type": "assert_return", "line": 2412, "action": {"type": "invoke", "field": "ge", "args": [{"type": "f32", "value": "2141192192"}, {"type": "f32", "value": "2141192192"}]}, "expected": [{"type": "i32", "value": "0"}]}, 
+  {"type": "assert_invalid", "line": 2417, "filename": "f32_cmp.1.wasm", "text": "type mismatch", "module_type": "binary"}, 
+  {"type": "assert_invalid", "line": 2418, "filename": "f32_cmp.2.wasm", "text": "type mismatch", "module_type": "binary"}, 
+  {"type": "assert_invalid", "line": 2419, "filename": "f32_cmp.3.wasm", "text": "type mismatch", "module_type": "binary"}, 
+  {"type": "assert_invalid", "line": 2420, "filename": "f32_cmp.4.wasm", "text": "type mismatch", "module_type": "binary"}, 
+  {"type": "assert_invalid", "line": 2421, "filename": "f32_cmp.5.wasm", "text": "type mismatch", "module_type": "binary"}, 
+  {"type": "assert_invalid", "line": 2422, "filename": "f32_cmp.6.wasm", "text": "type mismatch", "module_type": "binary"}]}
