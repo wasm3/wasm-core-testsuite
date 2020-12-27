@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/int_literals.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/int_literals.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "int_literals.0.wasm"}, 
   {"type": "assert_return", "line": 37, "action": {"type": "invoke", "field": "i32.test", "args": []}, "expected": [{"type": "i32", "value": "195940365"}]}, 

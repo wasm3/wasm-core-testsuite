@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/memory_redundancy.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/memory_redundancy.wast",
  "commands": [
   {"type": "module", "line": 5, "filename": "memory_redundancy.0.wasm"}, 
   {"type": "assert_return", "line": 59, "action": {"type": "invoke", "field": "test_store_to_load", "args": []}, "expected": [{"type": "i32", "value": "128"}]}, 

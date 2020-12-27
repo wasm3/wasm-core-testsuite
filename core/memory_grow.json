@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/memory_grow.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/memory_grow.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "memory_grow.0.wasm"}, 
   {"type": "assert_return", "line": 14, "action": {"type": "invoke", "field": "size", "args": []}, "expected": [{"type": "i32", "value": "0"}]}, 

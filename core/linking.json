@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/linking.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/linking.wast",
  "commands": [
   {"type": "module", "line": 3, "name": "$Mf", "filename": "linking.0.wasm"}, 
   {"type": "register", "line": 7, "name": "$Mf", "as": "Mf"}, 

@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/align.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/align.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "align.0.wasm"}, 
   {"type": "module", "line": 4, "filename": "align.1.wasm"}, 

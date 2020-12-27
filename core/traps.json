@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/traps.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/traps.wast",
  "commands": [
   {"type": "module", "line": 5, "filename": "traps.0.wasm"}, 
   {"type": "assert_trap", "line": 16, "action": {"type": "invoke", "field": "no_dce.i32.div_s", "args": [{"type": "i32", "value": "1"}, {"type": "i32", "value": "0"}]}, "text": "integer divide by zero", "expected": []}, 

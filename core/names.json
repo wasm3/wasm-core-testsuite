@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/names.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/names.wast",
  "commands": [
   {"type": "module", "line": 4, "filename": "names.0.wasm"}, 
   {"type": "assert_return", "line": 8, "action": {"type": "invoke", "field": "foo", "args": []}, "expected": [{"type": "i32", "value": "0"}]}, 

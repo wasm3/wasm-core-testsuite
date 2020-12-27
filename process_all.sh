@@ -2,11 +2,10 @@
 
 export PATH=~/_Projects/Wasm/test/wabt/build:$PATH
 
-./process.py ./_wast/core-1.1 ./core-1.1
+./process.py ./_wast/core-opam-1.1.1 ./core
 
 ./process.py --flags=""                                 ./_wast/proposals/mutable-global ./proposals/mutable-global
 ./process.py --flags="--enable-bulk-memory"             ./_wast/proposals/bulk-memory-operations ./proposals/bulk-memory-operations/
-./process.py --flags="--enable-multi-value"             ./_wast/proposals/multi-value ./proposals/multi-value
 ./process.py --flags="--enable-reference-types"         ./_wast/proposals/reference-types ./proposals/reference-types
 ./process.py --flags="--enable-sign-extension"          ./_wast/proposals/sign-extension-ops ./proposals/sign-extension-ops
 ./process.py --flags="--enable-tail-call"               ./_wast/proposals/tail-call ./proposals/tail-call

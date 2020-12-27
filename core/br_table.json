@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/br_table.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/br_table.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "br_table.0.wasm"}, 
   {"type": "assert_return", "line": 1247, "action": {"type": "invoke", "field": "type-i32", "args": []}, "expected": []}, 

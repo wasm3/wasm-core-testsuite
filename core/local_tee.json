@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/local_tee.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/local_tee.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "local_tee.0.wasm"}, 
   {"type": "assert_return", "line": 280, "action": {"type": "invoke", "field": "type-local-i32", "args": []}, "expected": [{"type": "i32", "value": "0"}]}, 

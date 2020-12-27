@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/binary-leb128.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/binary-leb128.wast",
  "commands": [
   {"type": "module", "line": 2, "filename": "binary-leb128.0.wasm"}, 
   {"type": "module", "line": 7, "filename": "binary-leb128.1.wasm"}, 

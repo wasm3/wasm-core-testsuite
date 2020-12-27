@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/load.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/load.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "load.0.wasm"}, 
   {"type": "assert_return", "line": 161, "action": {"type": "invoke", "field": "as-br-value", "args": []}, "expected": [{"type": "i32", "value": "0"}]}, 

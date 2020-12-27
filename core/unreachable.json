@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/unreachable.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/unreachable.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "unreachable.0.wasm"}, 
   {"type": "assert_trap", "line": 221, "action": {"type": "invoke", "field": "type-i32", "args": []}, "text": "unreachable", "expected": [{"type": "i32"}]}, 

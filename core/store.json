@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-1.1/store.wast",
+{"source_filename": "./_wast/core-opam-1.1.1/store.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "store.0.wasm"}, 
   {"type": "assert_return", "line": 44, "action": {"type": "invoke", "field": "as-block-value", "args": []}, "expected": []}, 
