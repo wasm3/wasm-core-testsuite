@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-1.1.1/loop.wast",
+{"source_filename": "./_wast/core-opam-2.0.0/loop.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "loop.0.wasm"}, 
   {"type": "assert_return", "line": 430, "action": {"type": "invoke", "field": "empty", "args": []}, "expected": []}, 

@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-1.1.1/skip-stack-guard-page.wast",
+{"source_filename": "./_wast/core-opam-2.0.0/skip-stack-guard-page.wast",
  "commands": [
   {"type": "module", "line": 2, "filename": "skip-stack-guard-page.0.wasm"}, 
   {"type": "assert_exhaustion", "line": 2275, "action": {"type": "invoke", "field": "test-guard-page-skip", "args": [{"type": "i32", "value": "0"}]}, "text": "call stack exhausted", "expected": []}, 

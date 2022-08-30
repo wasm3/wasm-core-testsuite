@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-1.1.1/const.wast",
+{"source_filename": "./_wast/core-opam-2.0.0/const.wast",
  "commands": [
   {"type": "module", "line": 5, "filename": "const.0.wasm"}, 
   {"type": "module", "line": 6, "filename": "const.1.wasm"}, 
