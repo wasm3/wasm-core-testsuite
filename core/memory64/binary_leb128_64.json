@@ -1,0 +1,4 @@
+{"source_filename": "_wast/spec-wg-3.0/test/core/memory64/binary_leb128_64.wast",
+ "commands": [
+  {"type": "module", "line": 1, "filename": "binary_leb128_64.0.wasm"}, 
+  {"type": "assert_malformed", "line": 17, "filename": "binary_leb128_64.1.wasm", "text": "integer too large", "module_type": "binary"}]}

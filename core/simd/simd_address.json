@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_address.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/simd/simd_address.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "simd_address.0.wasm"}, 
   {"type": "assert_return", "line": 53, "action": {"type": "invoke", "field": "load_data_1", "args": [{"type": "i32", "value": "0"}]}, "expected": [{"type": "v128", "lane_type": "i32", "value": ["50462976", "117835012", "286263560", "353637138"]}]}, 
@@ -47,5 +47,5 @@
   {"type": "module", "line": 122, "filename": "simd_address.3.wasm"}, 
   {"type": "assert_trap", "line": 128, "action": {"type": "invoke", "field": "v128.store_offset_65521", "args": []}, "text": "out of bounds memory access", "expected": []}, 
   {"type": "assert_malformed", "line": 131, "filename": "simd_address.4.wat", "text": "unknown operator", "module_type": "text"}, 
-  {"type": "assert_malformed", "line": 144, "filename": "simd_address.5.wat", "text": "i32 constant", "module_type": "text"}, 
-  {"type": "assert_malformed", "line": 152, "filename": "simd_address.6.wat", "text": "i32 constant", "module_type": "text"}]}
+  {"type": "assert_invalid", "line": 144, "filename": "simd_address.5.wat", "text": "offset out of range", "module_type": "text"}, 
+  {"type": "assert_invalid", "line": 152, "filename": "simd_address.6.wat", "text": "offset out of range", "module_type": "text"}]}

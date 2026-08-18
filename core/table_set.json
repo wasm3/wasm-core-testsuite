@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/table_set.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/table_set.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "table_set.0.wasm"}, 
   {"type": "assert_return", "line": 29, "action": {"type": "invoke", "field": "get-externref", "args": [{"type": "i32", "value": "0"}]}, "expected": [{"type": "externref", "value": "null"}]}, 

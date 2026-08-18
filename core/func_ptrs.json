@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/func_ptrs.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/func_ptrs.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "func_ptrs.0.wasm"}, 
   {"type": "assert_return", "line": 27, "action": {"type": "invoke", "field": "one", "args": []}, "expected": [{"type": "i32", "value": "13"}]}, 

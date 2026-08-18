@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_i16x8_cmp.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/simd/simd_i16x8_cmp.wast",
  "commands": [
   {"type": "module", "line": 4, "filename": "simd_i16x8_cmp.0.wasm"}, 
   {"type": "assert_return", "line": 23, "action": {"type": "invoke", "field": "eq", "args": [{"type": "v128", "lane_type": "i16", "value": ["65535", "65535", "65535", "65535", "65535", "65535", "65535", "65535"]}, {"type": "v128", "lane_type": "i16", "value": ["65535", "65535", "65535", "65535", "65535", "65535", "65535", "65535"]}]}, "expected": [{"type": "v128", "lane_type": "i16", "value": ["65535", "65535", "65535", "65535", "65535", "65535", "65535", "65535"]}]}, 

@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_f32x4_cmp.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/simd/simd_f32x4_cmp.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "simd_f32x4_cmp.0.wasm"}, 
   {"type": "assert_return", "line": 13, "action": {"type": "invoke", "field": "eq", "args": [{"type": "v128", "lane_type": "f32", "value": ["2143289344", "2143289344", "2143289344", "2143289344"]}, {"type": "v128", "lane_type": "f32", "value": ["2143289344", "2143289344", "2143289344", "2143289344"]}]}, "expected": [{"type": "v128", "lane_type": "i32", "value": ["0", "0", "0", "0"]}]}, 

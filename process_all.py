@@ -22,7 +22,7 @@ from pathlib import Path
 
 from process import convert, process
 
-SPEC_TAG = os.environ.get("SPEC_TAG", "wg-2.0")
+SPEC_TAG = os.environ.get("SPEC_TAG", "wg-3.0")
 WABT_VERSION = os.environ.get("WABT_VERSION", "1.0.41")
 WASM_TOOLS_VERSION = os.environ.get("WASM_TOOLS_VERSION", "1.256.0")
 
@@ -34,23 +34,16 @@ PLATFORMS = {
     ("Windows", "AMD64"):   ("windows-x64", "x86_64-windows"),
 }
 
-# Testsuites of proposals that are not part of Wasm 2.0, taken from the proposal's
-# own repo. Which tests belong to a proposal is figured out automatically: they are
-# the ones that don't convert with just the "deps" features (everything the tests rely
-# on besides the proposal itself), but do convert once the proposal is enabled too.
-PROPOSALS = {
-    "tail-call":           {"flags": "--enable-tail-call"},
-    "extended-const":      {"flags": "--enable-extended-const"},
-    "function-references": {"flags": "--enable-function-references", "deps": "--enable-tail-call"},
-    "multi-memory":        {"flags": "--enable-multi-memory"},
-    # wabt's text parser doesn't understand GC types at all, so these tests are converted
-    # with wasm-tools, which needs no feature flags: what identifies them is that wabt
-    # can't handle them even with every feature it knows about turned on.
-    "gc":                  {"deps": "--enable-all", "tool": "wasm-tools"},
-    "exceptions":          {"flags": "--enable-exceptions", "deps": "--enable-tail-call",
-                            "repo": "exception-handling"},
-    "threads":             {"flags": "--enable-threads"},
-}
+# Testsuites of proposals that are not part of Wasm 3.0, taken from the proposal's own
+# repo (github.com/WebAssembly/<name>). Everything else these repos carry is just their
+# copy of the spec testsuite, which core/ already covers.
+PROPOSALS = ["threads", "custom-page-sizes", "wide-arithmetic", "stack-switching"]
+
+# Every feature wabt knows about, used to tell a proposal's own tests apart from the
+# rest of the suite: they are the ones that need its flag on top of all the others.
+WABT_FEATURES = ["annotations", "code-metadata", "compact-imports", "custom-page-sizes",
+                 "exceptions", "extended-const", "function-references", "gc", "memory64",
+                 "multi-memory", "relaxed-simd", "tail-call", "threads", "wide-arithmetic"]
 
 DEPS = Path("_wast")
 
@@ -104,19 +97,35 @@ def install_tools():
     subprocess.check_call(["wasm-tools", "--version"])
 
 
-def collect(name, repoDir, flags, deps, tool):
+def belongs(name, fn, testDir, probe):
+    """Does this test of the proposal's repo actually exercise the proposal?
+
+    Two ways of telling. The tests a proposal adds live under its own name, either in a
+    `test/core/<name>/` directory or as a single `test/core/<name>.wast`. On top of that,
+    proposals usually extend a handful of the shared tests as well; those are found by
+    conversion: they need the proposal's own feature flag, everything else wabt knows
+    about isn't enough. (The second test only works for proposals wabt implements.)"""
+    rel = fn.relative_to(testDir)
+    if rel.parts[0] in (name, f"{name}.wast"):
+        return True
+    if name not in WABT_FEATURES:
+        return False
+    deps = " ".join(f"--enable-{f}" for f in WABT_FEATURES if f != name)
+    return bool(convert(fn, probe, deps)) and not convert(fn, probe, f"{deps} --enable-{name}")
+
+
+def collect(name, repoDir):
     """Gathers the tests that actually exercise the proposal into a single directory."""
     wastDir = DEPS / "proposals" / name
     shutil.rmtree(wastDir, ignore_errors=True)
     wastDir.mkdir(parents=True)
 
+    testDir = repoDir / "test/core"
     with tempfile.TemporaryDirectory() as probeDir:
         probe = Path(probeDir) / "probe.json"
-        for fn in sorted((repoDir / "test/core").glob("**/*.wast")):
-            if not convert(fn, probe, deps):
-                continue        # converts fine without the proposal
-            if convert(fn, probe, f"{deps} {flags}", tool):
-                continue        # needs more than the proposal
+        for fn in sorted(testDir.glob("**/*.wast")):
+            if not belongs(name, fn, testDir, probe):
+                continue
             dst = wastDir / fn.name
             if dst.exists():
                 dst = wastDir / f"{fn.parent.name}-{fn.name}"
@@ -135,22 +144,21 @@ def main():
     spec = fetch(f"https://github.com/WebAssembly/spec/archive/refs/tags/{SPEC_TAG}.zip",
                  f"spec-{SPEC_TAG}.zip", f"spec-{SPEC_TAG}")
 
-    # All WebAssembly 2.0 features (multi-value, sign-extension, saturating float-to-int,
-    # bulk memory, reference types, SIMD, mutable globals) are enabled by default in wabt.
+    # The spec testsuite is mirrored one directory at a time: everything Wasm 3.0 pulled
+    # in (gc, memory64, multi-memory, exceptions, relaxed-simd, ...) keeps living in its
+    # own subdirectory, the way the spec repo lays it out.
+    testDir = spec / "test/core"
     shutil.rmtree("core", ignore_errors=True)
-    process(spec / "test/core",      "core")
-    process(spec / "test/core/simd", "core/simd")
+    process(testDir, "core", "--enable-all")
+    for sub in sorted(p for p in testDir.iterdir() if p.is_dir()):
+        process(sub, Path("core") / sub.name, "--enable-all")
 
-    for name, proposal in PROPOSALS.items():
-        repo = proposal.get("repo", name)
-        repoDir = fetch(f"https://github.com/WebAssembly/{repo}/archive/refs/heads/main.zip",
-                        f"{repo}-main.zip", f"{repo}-main")
-        flags = proposal.get("flags", "")
-        deps = proposal.get("deps", "")
-        tool = proposal.get("tool", "wast2json")
-        wastDir = collect(name, repoDir, flags, deps, tool)
-        shutil.rmtree(Path("proposals") / name, ignore_errors=True)
-        process(wastDir, Path("proposals") / name, f"{deps} {flags}", tool=tool)
+    shutil.rmtree("proposals", ignore_errors=True)
+    for name in PROPOSALS:
+        repoDir = fetch(f"https://github.com/WebAssembly/{name}/archive/refs/heads/main.zip",
+                        f"{name}-main.zip", f"{name}-main")
+        wastDir = collect(name, repoDir)
+        process(wastDir, Path("proposals") / name, "--enable-all")
 
 
 if __name__ == "__main__":

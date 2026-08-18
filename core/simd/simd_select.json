@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_select.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/simd/simd_select.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "simd_select.0.wasm"}, 
   {"type": "assert_return", "line": 10, "action": {"type": "invoke", "field": "select_v128_i32", "args": [{"type": "v128", "lane_type": "i32", "value": ["1", "2", "3", "4"]}, {"type": "v128", "lane_type": "i32", "value": ["5", "6", "7", "8"]}, {"type": "i32", "value": "1"}]}, "expected": [{"type": "v128", "lane_type": "i32", "value": ["1", "2", "3", "4"]}]}, 

@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/custom.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/custom.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "custom.0.wasm"}, 
   {"type": "module", "line": 14, "filename": "custom.1.wasm"}, 

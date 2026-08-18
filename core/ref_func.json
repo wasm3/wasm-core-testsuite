@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/ref_func.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/ref_func.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "ref_func.0.wasm"}, 
   {"type": "register", "line": 4, "as": "M"}, 

@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_linking.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/simd/simd_linking.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "simd_linking.0.wasm"}, 
   {"type": "register", "line": 5, "as": "Mv128"}, 

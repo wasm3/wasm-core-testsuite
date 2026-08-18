@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/if.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/if.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "if.0.wasm"}, 
   {"type": "assert_return", "line": 537, "action": {"type": "invoke", "field": "empty", "args": [{"type": "i32", "value": "0"}]}, "expected": []}, 

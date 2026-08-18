@@ -1,4 +1,4 @@
-{"source_filename": "_wast/spec-wg-2.0/test/core/obsolete-keywords.wast",
+{"source_filename": "_wast/spec-wg-3.0/test/core/obsolete-keywords.wast",
  "commands": [
   {"type": "assert_malformed", "line": 3, "filename": "obsolete-keywords.0.wat", "text": "unknown operator current_memory", "module_type": "text"}, 
   {"type": "assert_malformed", "line": 11, "filename": "obsolete-keywords.1.wat", "text": "unknown operator grow_memory", "module_type": "text"}, 

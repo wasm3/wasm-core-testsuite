@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os, sys, glob
+import json
 import shlex
 import subprocess
 import argparse
@@ -37,12 +38,48 @@ def convert(wast_fn, json_fn, flags="", tool="wast2json"):
     return out.decode(errors="replace").strip() or None
 
 
+def discard(json_fn):
+    """Throws away the result of a conversion; prune() sweeps up its module files."""
+    try:
+        os.remove(json_fn)
+    except FileNotFoundError:
+        pass
+
+
+def prune(jsonDir):
+    """Drops the module files no .json refers to.
+
+    Those are the leftovers of conversions that failed or got redone with another tool,
+    plus the ones wasm-tools writes but never names: it emits both a .wat and a .wasm
+    for some text modules."""
+    used = set()
+    for json_fn in glob.glob(os.path.join(jsonDir, "*.json")):
+        with open(json_fn) as f:
+            used |= set(find_filenames(json.load(f)))
+    for fn in glob.glob(os.path.join(jsonDir, "*.wasm")) + glob.glob(os.path.join(jsonDir, "*.wat")):
+        if os.path.basename(fn) not in used:
+            os.remove(fn)
+
+
+def find_filenames(node):
+    """Yields every "filename" a converted testsuite refers to."""
+    if isinstance(node, dict):
+        if isinstance(node.get("filename"), str):
+            yield node["filename"]
+        for value in node.values():
+            yield from find_filenames(value)
+    elif isinstance(node, list):
+        for value in node:
+            yield from find_filenames(value)
+
+
 def process(wastDir, jsonDir, flags="", optimize=None, tool="wast2json"):
     wastDir, jsonDir = str(wastDir), str(jsonDir)
     ensure_path(jsonDir)
 
     print(f"Preprocessing spec files: {wastDir} -> {jsonDir}", flush=True)
 
+    fallback = []
     inputFiles = glob.glob(os.path.join(wastDir, "*.wast"))
     inputFiles.sort()
     for fn in inputFiles:
@@ -51,8 +88,22 @@ def process(wastDir, jsonDir, flags="", optimize=None, tool="wast2json"):
         wast_fn = os.path.join(wastDir, fn)
         json_fn = os.path.join(jsonDir, os.path.splitext(fn)[0]) + ".json"
         err = convert(wast_fn, json_fn, flags, tool)
+        if err and tool == "wast2json":
+            # wabt's text parser lags behind the spec (GC types, 64-bit index types,
+            # `module definition`, ...), so retry with wasm-tools, which understands
+            # everything the spec repo throws at it.
+            discard(json_fn)
+            err = convert(wast_fn, json_fn, tool="wasm-tools")
+            if not err:
+                fallback.append(fn)
         if err:
+            discard(json_fn)
             warning(f"Could not process {wast_fn}:\n{err}")
+
+    if fallback:
+        print(f"Converted with wasm-tools: {' '.join(fallback)}", flush=True)
+
+    prune(jsonDir)
 
     if optimize:
         wasmFiles = glob.glob(os.path.join(jsonDir, "*.wasm"))
