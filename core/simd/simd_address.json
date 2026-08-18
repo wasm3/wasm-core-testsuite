@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/simd/simd_address.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_address.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "simd_address.0.wasm"}, 
   {"type": "assert_return", "line": 53, "action": {"type": "invoke", "field": "load_data_1", "args": [{"type": "i32", "value": "0"}]}, "expected": [{"type": "v128", "lane_type": "i32", "value": ["50462976", "117835012", "286263560", "353637138"]}]}, 

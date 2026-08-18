@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/memory_init.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/memory_init.wast",
  "commands": [
   {"type": "module", "line": 6, "filename": "memory_init.0.wasm"}, 
   {"type": "action", "line": 17, "action": {"type": "invoke", "field": "test", "args": []}, "expected": []}, 

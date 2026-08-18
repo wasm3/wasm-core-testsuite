@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/simd/simd_f32x4.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_f32x4.wast",
  "commands": [
   {"type": "module", "line": 4, "filename": "simd_f32x4.0.wasm"}, 
   {"type": "assert_return", "line": 33, "action": {"type": "invoke", "field": "f32x4.min_with_const_0", "args": []}, "expected": [{"type": "v128", "lane_type": "f32", "value": ["0", "1065353216", "1065353216", "3225419776"]}]}, 

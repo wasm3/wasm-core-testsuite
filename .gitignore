@@ -1,0 +1,3 @@
+_wast/
+__pycache__/
+*.pyc

@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/simd/simd_f64x2_rounding.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_f64x2_rounding.wast",
  "commands": [
   {"type": "module", "line": 4, "filename": "simd_f64x2_rounding.0.wasm"}, 
   {"type": "assert_return", "line": 11, "action": {"type": "invoke", "field": "f64x2.ceil", "args": [{"type": "v128", "lane_type": "f64", "value": ["0", "0"]}]}, "expected": [{"type": "v128", "lane_type": "f64", "value": ["0", "0"]}]}, 

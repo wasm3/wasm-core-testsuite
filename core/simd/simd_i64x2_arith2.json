@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/simd/simd_i64x2_arith2.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_i64x2_arith2.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "simd_i64x2_arith2.0.wasm"}, 
   {"type": "assert_return", "line": 8, "action": {"type": "invoke", "field": "i64x2.abs", "args": [{"type": "v128", "lane_type": "i64", "value": ["1", "1"]}]}, "expected": [{"type": "v128", "lane_type": "i64", "value": ["1", "1"]}]}, 

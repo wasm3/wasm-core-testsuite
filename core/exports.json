@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/exports.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/exports.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "exports.0.wasm"}, 
   {"type": "module", "line": 4, "filename": "exports.1.wasm"}, 

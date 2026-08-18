@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/unreached-valid.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/unreached-valid.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "unreached-valid.0.wasm"}, 
   {"type": "assert_trap", "line": 42, "action": {"type": "invoke", "field": "select-trap-left", "args": [{"type": "i32", "value": "1"}]}, "text": "unreachable", "expected": [{"type": "i32"}]}, 

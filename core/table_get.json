@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/table_get.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/table_get.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "table_get.0.wasm"}, 
   {"type": "action", "line": 24, "action": {"type": "invoke", "field": "init", "args": [{"type": "externref", "value": "1"}]}, "expected": []}, 

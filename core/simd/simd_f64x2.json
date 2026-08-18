@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/simd/simd_f64x2.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_f64x2.wast",
  "commands": [
   {"type": "module", "line": 4, "filename": "simd_f64x2.0.wasm"}, 
   {"type": "assert_return", "line": 50, "action": {"type": "invoke", "field": "f64x2.min_with_const_0", "args": []}, "expected": [{"type": "v128", "lane_type": "f64", "value": ["0", "4607182418800017408"]}]}, 

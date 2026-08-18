@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/bulk.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/bulk.wast",
  "commands": [
   {"type": "module", "line": 2, "filename": "bulk.0.wasm"}, 
   {"type": "module", "line": 6, "filename": "bulk.1.wasm"}, 

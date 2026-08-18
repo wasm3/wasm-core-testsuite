@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/select.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/select.wast",
  "commands": [
   {"type": "module", "line": 1, "filename": "select.0.wasm"}, 
   {"type": "assert_return", "line": 183, "action": {"type": "invoke", "field": "select-i32", "args": [{"type": "i32", "value": "1"}, {"type": "i32", "value": "2"}, {"type": "i32", "value": "1"}]}, "expected": [{"type": "i32", "value": "1"}]}, 
@@ -146,4 +146,5 @@
   {"type": "assert_invalid", "line": 496, "filename": "select.25.wasm", "text": "type mismatch", "module_type": "binary"}, 
   {"type": "assert_invalid", "line": 500, "filename": "select.26.wasm", "text": "type mismatch", "module_type": "binary"}, 
   {"type": "assert_invalid", "line": 504, "filename": "select.27.wasm", "text": "type mismatch", "module_type": "binary"}, 
-  {"type": "assert_invalid", "line": 511, "filename": "select.28.wasm", "text": "type mismatch", "module_type": "binary"}]}
+  {"type": "assert_invalid", "line": 511, "filename": "select.28.wasm", "text": "type mismatch", "module_type": "binary"}, 
+  {"type": "module", "line": 518, "filename": "select.29.wasm"}]}

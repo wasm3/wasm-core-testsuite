@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/simd/simd_conversions.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_conversions.wast",
  "commands": [
   {"type": "module", "line": 3, "filename": "simd_conversions.0.wasm"}, 
   {"type": "assert_return", "line": 35, "action": {"type": "invoke", "field": "f64x2.promote_low_f32x4", "args": [{"type": "v128", "lane_type": "f32", "value": ["0", "0", "0", "0"]}]}, "expected": [{"type": "v128", "lane_type": "f64", "value": ["0", "0"]}]}, 

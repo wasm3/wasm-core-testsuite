@@ -1,4 +1,4 @@
-{"source_filename": "./_wast/core-opam-2.0.0/simd/simd_i8x16_cmp.wast",
+{"source_filename": "_wast/spec-wg-2.0/test/core/simd/simd_i8x16_cmp.wast",
  "commands": [
   {"type": "module", "line": 4, "filename": "simd_i8x16_cmp.0.wasm"}, 
   {"type": "assert_return", "line": 23, "action": {"type": "invoke", "field": "eq", "args": [{"type": "v128", "lane_type": "i8", "value": ["255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255"]}, {"type": "v128", "lane_type": "i8", "value": ["255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255"]}]}, "expected": [{"type": "v128", "lane_type": "i8", "value": ["255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255", "255"]}]}, 
