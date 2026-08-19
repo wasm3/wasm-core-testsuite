@@ -20,7 +20,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
-from process import convert, process
+from process import convert, process, set_tool_paths
 
 SPEC_TAG = os.environ.get("SPEC_TAG", "wg-3.0")
 WABT_VERSION = os.environ.get("WABT_VERSION", "1.0.41")
@@ -37,7 +37,8 @@ PLATFORMS = {
 # Testsuites of proposals that are not part of Wasm 3.0, taken from the proposal's own
 # repo (github.com/WebAssembly/<name>). Everything else these repos carry is just their
 # copy of the spec testsuite, which core/ already covers.
-PROPOSALS = ["threads", "custom-page-sizes", "wide-arithmetic", "stack-switching"]
+PROPOSALS = ["threads", "custom-page-sizes", "wide-arithmetic", "stack-switching",
+             "compact-import-section"]
 
 # Every feature wabt knows about, used to tell a proposal's own tests apart from the
 # rest of the suite: they are the ones that need its flag on top of all the others.
@@ -45,7 +46,17 @@ WABT_FEATURES = ["annotations", "code-metadata", "compact-imports", "custom-page
                  "exceptions", "extended-const", "function-references", "gc", "memory64",
                  "multi-memory", "relaxed-simd", "tail-call", "threads", "wide-arithmetic"]
 
+# wabt 1.0.41 writes compact import groups with the item count instead of the
+# grouped entry count, producing binaries that conforming decoders reject.
+BROKEN_WABT_FEATURES = {"compact-imports"}
+
 DEPS = Path("_wast")
+
+
+def wabt_flags(*excluded):
+    """All stable wabt features needed for conversion, excluding known-bad emitters."""
+    skipped = BROKEN_WABT_FEATURES | set(excluded)
+    return " ".join(f"--enable-{f}" for f in WABT_FEATURES if f not in skipped)
 
 
 def fetch(url, archive, dirname):
@@ -91,10 +102,17 @@ def install_tools():
                       f"wasm-tools-{WASM_TOOLS_VERSION}.tar.gz",
                       f"wasm-tools-{WASM_TOOLS_VERSION}-{wasmToolsPlat}")
 
+    suffix = ".exe" if platform.system() == "Windows" else ""
+    pinned = {
+        "wast2json": wabt / "bin" / f"wast2json{suffix}",
+        "wasm-tools": wasmTools / f"wasm-tools{suffix}",
+    }
+    set_tool_paths(pinned)
+
     for binDir in (wabt / "bin", wasmTools):
         os.environ["PATH"] = str(binDir.resolve()) + os.pathsep + os.environ["PATH"]
-    subprocess.check_call(["wast2json", "--version"])
-    subprocess.check_call(["wasm-tools", "--version"])
+    subprocess.check_call([str(pinned["wast2json"]), "--version"])
+    subprocess.check_call([str(pinned["wasm-tools"]), "--version"])
 
 
 def belongs(name, fn, testDir, probe):
@@ -110,7 +128,7 @@ def belongs(name, fn, testDir, probe):
         return True
     if name not in WABT_FEATURES:
         return False
-    deps = " ".join(f"--enable-{f}" for f in WABT_FEATURES if f != name)
+    deps = wabt_flags(name)
     return bool(convert(fn, probe, deps)) and not convert(fn, probe, f"{deps} --enable-{name}")
 
 
@@ -149,16 +167,17 @@ def main():
     # own subdirectory, the way the spec repo lays it out.
     testDir = spec / "test/core"
     shutil.rmtree("core", ignore_errors=True)
-    process(testDir, "core", "--enable-all")
+    flags = wabt_flags()
+    process(testDir, "core", flags)
     for sub in sorted(p for p in testDir.iterdir() if p.is_dir()):
-        process(sub, Path("core") / sub.name, "--enable-all")
+        process(sub, Path("core") / sub.name, flags)
 
     shutil.rmtree("proposals", ignore_errors=True)
     for name in PROPOSALS:
         repoDir = fetch(f"https://github.com/WebAssembly/{name}/archive/refs/heads/main.zip",
                         f"{name}-main.zip", f"{name}-main")
         wastDir = collect(name, repoDir)
-        process(wastDir, Path("proposals") / name, "--enable-all")
+        process(wastDir, Path("proposals") / name, flags)
 
 
 if __name__ == "__main__":

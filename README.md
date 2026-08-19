@@ -8,7 +8,8 @@ WebAssembly core testsuite, converted using `wast2json`.
   subdirectory — `core/bulk-memory/`, `core/exceptions/`, `core/gc/`, `core/memory64/`,
   `core/multi-memory/`, `core/relaxed-simd/` and `core/simd/`
 - `proposals/` — testsuites of proposals that are not part of Wasm 3.0, taken from each
-  proposal's own repo: `threads`, `custom-page-sizes`, `wide-arithmetic` and `stack-switching`
+  proposal's own repo: `threads`, `custom-page-sizes`, `wide-arithmetic`, `stack-switching`
+  and `compact-import-section`
 
 Only the tests that actually exercise a proposal end up in its directory: the ones it adds
 under its own name, plus any of the shared tests that don't convert until its feature is

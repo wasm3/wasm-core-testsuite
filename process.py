@@ -7,9 +7,25 @@ import subprocess
 import argparse
 import pathlib
 
+TOOL_PATHS = {
+    "wast2json": os.environ.get("WAST2JSON", "wast2json"),
+    "wasm-tools": os.environ.get("WASM_TOOLS", "wasm-tools"),
+    "wasm-opt": os.environ.get("WASM_OPT", "wasm-opt"),
+}
+
 
 def ensure_path(p):
     pathlib.Path(p).mkdir(parents=True, exist_ok=True)
+
+
+def set_tool_paths(paths):
+    """Pins converter tool names to exact executable paths."""
+    for name, path in paths.items():
+        TOOL_PATHS[name] = str(path)
+
+
+def tool_path(name):
+    return TOOL_PATHS.get(name, name)
 
 
 def run(cmd):
@@ -27,10 +43,10 @@ def convert(wast_fn, json_fn, flags="", tool="wast2json"):
     wasm-tools understands every proposal, so it takes no feature flags."""
     wast_fn, json_fn = str(wast_fn), str(json_fn)
     if tool == "wasm-tools":
-        cmd = ["wasm-tools", "json-from-wast", "--wasm-dir", os.path.dirname(json_fn) or ".",
+        cmd = [tool_path("wasm-tools"), "json-from-wast", "--wasm-dir", os.path.dirname(json_fn) or ".",
                "-o", json_fn, wast_fn]
     else:
-        cmd = ["wast2json", "--debug-names"] + shlex.split(flags) + ["-o", json_fn, wast_fn]
+        cmd = [tool_path("wast2json"), "--debug-names"] + shlex.split(flags) + ["-o", json_fn, wast_fn]
     try:
         out = run(cmd)
     except subprocess.CalledProcessError as e:
@@ -110,7 +126,7 @@ def process(wastDir, jsonDir, flags="", optimize=None, tool="wast2json"):
         wasmFiles.sort()
         for fn in wasmFiles:
             try:
-                run(["wasm-opt"] + shlex.split(optimize) + [fn, "-o", fn])
+                run([tool_path("wasm-opt")] + shlex.split(optimize) + [fn, "-o", fn])
             except subprocess.CalledProcessError as e:
                 warning(f"Could not optimize {fn}:\n{e.output.decode(errors='replace').strip()}")
 
